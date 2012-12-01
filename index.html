@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <!-- TODO: allow delay loading of elements (empty text) 
+        <link href="i18ngss.css" rel="stylesheet"/>
+        -->
+        <script src="i18ngss.js"> </script>
+    </head>
+    <body>
+        <div>
+            <a href="#" click="i18n.setLocalTranslate($(this).text())">EN</a>
+            <a href="#" click="i18n.setLocalTranslate($(this).text())">JP</a>
+            <a href="#" click="document.href.URL=GSSURL">Spreadsheet</a>
+        </div>
+        <!-- will grab the profile-lefttxt1 token from spreadsheet -->
+        <h1 class="translate-token">profile-lefttxt1</h1>
+
+        <script>
+            var i18n;
+            // must be published
+            var GSSURL = "https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html";
+            $(function () {
+                // will be whatever the column name
+                i18n = $.i18n(CSSURL, ["EN", "JP"]);
+                i18n.setLocale('JP');  // set to jp (default as first)
+                i18n.translateDOM($('body'));
+                var tranalste = i18n.translateToken('profile-lefttxt1');
+            });
+        </script>
+    </body>
+</html>
+
