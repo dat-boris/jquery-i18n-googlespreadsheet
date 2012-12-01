@@ -12,8 +12,6 @@ $((function ($) {
     $.i18n = function (url, languages, callback) {
         var self = this;
 
-        self.alert = 1;  // for non-computer literate people knowning what to debug
-
         self.setLocale(languages[0]);
         /*
         self.translations = {
@@ -34,6 +32,16 @@ $((function ($) {
         return this;
     };
     $.i18n.prototype = {
+        /**
+          Create alert if field is missing
+          @field
+          */
+        alert: 1,
+        /**
+          Use animation for text
+          @field
+          */
+        animate : 1,
         getTranslationFromGSS : function (url, languages, callback) {
             var self = this;
 
@@ -101,7 +109,14 @@ $((function ($) {
                             }
                             return;
                         }
-                        $this.text(self.translations[token][self.lang]);
+                        var txtTranslated = self.translations[token][self.lang];
+                        if (self.animate) {
+                            $this.fadeOut(function() {
+                                $(this).text(txtTranslated).fadeIn();
+                            });
+                        } else {
+                            $this.text(txtTranslated);
+                        }
                         found = true;
                     }
             );

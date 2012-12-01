@@ -39,9 +39,10 @@
                 // will be whatever the column name
                 i18n = new $.i18n(GSSURL, LANGS,"translate");
 
+                // the 3 seconds swap
                 setInterval(function () {
-                    i18n.setLocaleTranslate(LANGS[langnow]);  // set to jp (default as first)
                     langnow = (langnow + 1) % LANGS.length;
+                    i18n.setLocaleTranslate(LANGS[langnow]);  // set to jp (default as first)
                 }, 3000);
             });
         </script>
