@@ -12,6 +12,8 @@ $((function ($) {
     $.i18n = function (url, languages, callback) {
         var self = this;
 
+        self.languages = languages;
+
         self.setLocale(languages[0]);
         /*
         self.translations = {
@@ -42,6 +44,12 @@ $((function ($) {
           @field
           */
         animate : 1,
+        languages : [],
+        /**
+          current language
+          @field
+          */
+        lang : null,
         getTranslationFromGSS : function (url, languages, callback) {
             var self = this;
 
