@@ -23,6 +23,10 @@ $((function ($) {
             }
         };
         */
+        $(".translate-button").click(function () {
+            self.setLocaleTranslate($(this).data('lang'));
+            return false;
+        });
         self.translations = {};
         if (!url) throw "No url given!";
         self.getTranslationFromGSS(url, languages, callback);
@@ -74,7 +78,7 @@ $((function ($) {
             var self = this;
             self.lang = lang;
         },
-        setLocalTranslate : function (lang) {
+        setLocaleTranslate : function (lang) {
             var self = this;
             self.setLocale(lang);
             self.translate($('body'));

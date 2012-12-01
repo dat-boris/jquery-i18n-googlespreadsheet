@@ -5,29 +5,44 @@
         <!-- TODO: allow delay loading of elements (empty text) 
         <link href="i18ngss.css" rel="stylesheet"/>
         -->
+        <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="google-spreadsheet-javascript/google-spreadsheet.js"></script>
         <script src="i18ngss.js"> </script>
     </head>
     <body>
-        <div>
-            <a href="#" click="i18n.setLocalTranslate($(this).text())">EN</a>
-            <a href="#" click="i18n.setLocalTranslate($(this).text())">JP</a>
-            <a href="#" click="document.href.URL=GSSURL">Spreadsheet</a>
-        </div>
-        <!-- will grab the profile-lefttxt1 token from spreadsheet -->
-        <h1 class="translate-token">profile-lefttxt1</h1>
+        <a href="https://github.com/sketchytechky/jquery-i18n-googlespreadsheet"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+        <div class="container">
+            <h1>Demo for jquery-i18n-googletranslate</h1>
+            <p> Translation below switch every 3 secs 
+                <a href="https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html" target="_blank">Published Translation Spreadsheet</a>
+            </p>
+            <div>
+                <a href="#" class="translate-button" data-lang="EN">EN</a>
+                <a href="#" class="translate-button" data-lang="JP"><img src="http://icons.iconarchive.com/icons/custom-icon-design/flag/24/Japan-Flag-icon.png"/></a>
+            </div>
 
+            <!-- will grab the profile-lefttxt1 token from spreadsheet -->
+            <h1 class="translate-token" data-translate-token="test-token"></h1>
+
+            <p>
+            <span class="translate-token" data-translate-token="profile-lefttxt1"></span>
+            </p>
+        </div>
         <script>
             var i18n;
             // must be published
             var GSSURL = "https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html";
+            var LANGS = ["EN", "JP"];
+            var langnow = 0;
             $(function () {
                 // will be whatever the column name
-                i18n = new $.i18n(GSSURL, ["EN", "JP"]);
-                i18n.setLocale('JP');  // set to jp (default as first)
-                i18n.translate($('body'));
-                var tranalste = i18n.translateToken('profile-lefttxt1');
+                i18n = new $.i18n(GSSURL, LANGS,"translate");
+
+                setInterval(function () {
+                    i18n.setLocaleTranslate(LANGS[langnow]);  // set to jp (default as first)
+                    langnow = (langnow + 1) % LANGS.length;
+                }, 3000);
             });
         </script>
     </body>

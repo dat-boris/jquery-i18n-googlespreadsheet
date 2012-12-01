@@ -31,9 +31,20 @@ describe("i18n-googlespreadsheet", function() {
 
     describe('change to japanese', function () {
       it('should be in japanese', function() {
-        i18n.setLocalTranslate('JP');
+        i18n.setLocaleTranslate('JP');
         expect( $h1.text() ).toEqual('蟥お か');
       });
+    });
+
+    describe('change button', function () {
+        async.it('should translate on click', function (done) {
+            expect( $h1.text() ).toEqual('Lorem ipsum');
+            $("#JPbutton").click();
+            setTimeout(function() {
+                expect( $h1.text() ).toEqual('蟥お か');
+                done();
+            },1000);
+        });
     });
 
     /**
