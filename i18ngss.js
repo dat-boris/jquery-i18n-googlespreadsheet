@@ -1,7 +1,7 @@
 /**
  * TODO proper header
  */
-(function ($) {
+$((function ($) {
     //"use strict";
 
     /**
@@ -14,26 +14,62 @@
 
         self.alert = 1;  // for non-computer literate people knowning what to debug
 
-        //TODO: get the data from the spreadsheet
+        self.setLocale(languages[0]);
+        /*
         self.translations = {
             'profile-lefttxt1' : {
                 'EN' : 'Lorem ipsum',
                 'JP' : '蟥お か'
             }
         };
-        self.setLocale(languages[0]);
+        */
+        self.translations = {};
+        if (!url) throw "No url given!";
+        self.getTranslationFromGSS(url, languages, callback);
 
-        if (callback === 'translate') {
-            self.translate($('body'));
-        }
-        else if (callback) {
-            callback();
-        }
-
-        //auto-translate
         return this;
     };
     $.i18n.prototype = {
+        getTranslationFromGSS : function (url, languages, callback) {
+            var self = this;
+
+            var numLangs = languages.length;
+            var googleSpreadsheet = new GoogleSpreadsheet();
+            googleSpreadsheet.url(url);
+            googleSpreadsheet.load(function(result) {
+                //$('#results').html(JSON.stringify(result).replace(/,/g,",\n"));
+                var tokenNow = '';
+                // result.data is a flat array of elements on page
+                // [(0,0),(0,1),(0,2),(0,3)....]
+                $.each(result.data, function (i,e) {
+                    // header
+                    if (i<numLangs+1) {
+                        if (i>0) {
+                            if (e!=languages[i-1]) {
+                                throw "Column "+(i)+" was not in language "+languages[i-1];
+                            }
+                        }
+                        return;
+                    }
+
+                    // body
+                    var langIndex = i % (numLangs+1);
+                    if (langIndex==0) {
+                        tokenNow = e;
+                        self.translations[tokenNow] = {};
+                    } else {
+                        self.translations[tokenNow][languages[langIndex-1]] = e;
+                    }
+                });
+
+                if (callback === 'translate') {
+                    self.translate($('body'));
+                }
+                else if (callback) {
+                    callback();
+                }
+            });
+        },
         setLocale : function (lang) {
             var self = this;
             self.lang = lang;
@@ -68,4 +104,4 @@
             if (!found) throw("No translation target found!");
         }
     };
-})(jQuery)
+})(jQuery));

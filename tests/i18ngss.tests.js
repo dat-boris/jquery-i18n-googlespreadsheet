@@ -1,22 +1,25 @@
 describe("i18n-googlespreadsheet", function() {
   var $h1, i18n;
+  var async = new AsyncSpec(this);
 
   describe("basic translation", function() {
-    beforeEach(function() {
-      clock = sinon.useFakeTimers();
+    async.beforeEach(function() {
+      //clock = sinon.useFakeTimers();
 
       loadFixtures('index.html');
 
       $el = $('#jasmine-fixtures');
       $h1 = $('#testh1');
-      i18n = new $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["EN", "JP"]);
+      i18n = new $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["EN", "JP"], function () {
+          i18n.translate($h1);
+          done();
+      });
       i18n.setLocale('EN');  // set to jp (default as first)
-      i18n.translate($h1);
       //var tranalste = i.translateToken('profile-lefttxt1');
     });
 
     afterEach(function() {
-      clock.restore();
+      //clock.restore();
     });
 
     describe('initial translation', function() {
@@ -32,5 +35,10 @@ describe("i18n-googlespreadsheet", function() {
         expect( $h1.text() ).toEqual('蟥お か');
       });
     });
+
+    /**
+      TODO test:
+      1. throw error on token not found
+      */
   });
 });
