@@ -7,6 +7,10 @@ A simple i18n plugin which use Google spreadsheet as source data
 
 http://sketchytechky.github.com/jquery-i18n-googlespreadsheet/
 
+### Tests ###
+
+http://sketchytechky.github.com/jquery-i18n-googlespreadsheet/tests/SpecRunner.html
+
 ## USAGE ##
 
 Simplistic. Simplista.
@@ -19,12 +23,18 @@ Simplistic. Simplista.
 
     <script>
         // will be whatever the column name
-        var i = $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["EN", "JP"]);
+        var i = new $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["EN", "JP"]);
         i.setLocale('JP');  // set to jp (default as first)
-        i.translateDOM($('body'));
+        i.translate($('body'));
         var tranalste = i.translateToken('profile-lefttxt1');
     </script>
 
+
+To create the spreadsheet, see example at:
+
+https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html
+
+And make sure it is published (see https://github.com/mikeymckay/google-spreadsheet-javascript/ for further info)
 
 ## Dependency ##
 

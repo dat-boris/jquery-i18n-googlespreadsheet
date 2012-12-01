@@ -1,0 +1,5 @@
+var SpecHelper = {
+
+    /** nothing here **/
+
+}
