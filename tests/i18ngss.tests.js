@@ -3,7 +3,7 @@ describe("i18n-googlespreadsheet", function() {
   var async = new AsyncSpec(this);
 
   describe("basic translation", function() {
-    async.beforeEach(function() {
+    async.beforeEach(function(done) {
       //clock = sinon.useFakeTimers();
 
       loadFixtures('index.html');
