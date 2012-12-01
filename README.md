@@ -31,10 +31,8 @@ Simplistic. Simplista.
         // will be whatever the column name
         var i = new $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["EN", "JP"], "translate");
 
-        i.setLocale('JP');  // set to jp (default as first)
-        i.translate($('body'));
         // translate one token 
-        var tranalste = i.translateToken('profile-lefttxt1');
+        //var tranalste = i.translateToken('profile-lefttxt1');
     </script>
 
 
