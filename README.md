@@ -15,7 +15,9 @@ http://sketchytechky.github.com/jquery-i18n-googlespreadsheet/tests/SpecRunner.h
 
 Simplistic. Simplista.
 
-    <link href="i18ngss.css" rel="stylesheet"/>
+    <!-- dependency -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="google-spreadsheet-javascript/google-spreadsheet.js"></script>
     <script src="i18ngss.js"> </script>
     
     <!-- will grab the profile-lefttxt1 token from spreadsheet -->
