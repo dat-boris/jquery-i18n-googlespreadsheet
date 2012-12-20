@@ -23,7 +23,7 @@ $((function ($) {
             }
         };
         */
-        $(".translate-button").click(function () {
+        $("body").on("click", ".translate-button", function () {
             self.setLocaleTranslate($(this).data('lang'));
             return false;
         });
@@ -116,11 +116,6 @@ $((function ($) {
                       $('<img src="http://www.geonames.org/flags/x/'+lang.toLowerCase()+'.gif"/>').css(style)
                   )
                 );
-            });
-
-            $(".translate-button").click(function () {
-                self.setLocaleTranslate($(this).data('lang'));
-                return false;
             });
         },
         translate : function ($e) {
