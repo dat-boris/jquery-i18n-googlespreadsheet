@@ -18,10 +18,7 @@
             <p> Translation below switch every 3 secs 
                 <a href="https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html" target="_blank">Published Translation Spreadsheet</a>
             </p>
-            <div>
-                <a href="#" class="translate-button" data-lang="EN">EN</a>
-                <a href="#" class="translate-button" data-lang="JP"><img src="http://icons.iconarchive.com/icons/custom-icon-design/flag/24/Japan-Flag-icon.png"/></a>
-            </div>
+            <div id="langbar"></div>
 
             <!-- will grab the profile-lefttxt1 token from spreadsheet -->
             <h1 class="translate-token" data-translate-token="test-token"></h1>
@@ -36,11 +33,13 @@
             var i18n;
             // must be published
             var GSSURL = "https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html";
-            var LANGS = ["EN", "JP"];
+            var LANGS = ["CA", "JP"];
             var langnow = 0;
             $(function () {
                 // will be whatever the column name
                 i18n = new $.i18n(GSSURL, LANGS,"translate");
+
+                i18n.displayBar("#langbar", { height: '20px', padding: '2px' });
 
                 // the 3 seconds swap
                 setInterval(function () {

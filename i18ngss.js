@@ -99,6 +99,30 @@ $((function ($) {
             self.setLocale(lang);
             self.translate($('body'));
         },
+        /** display language bar 
+            <div>
+                <a href="#" class="translate-button" data-lang="CA"><img src="http://www.geonames.org/flags/x/ca.gif"/></a>
+                <a href="#" class="translate-button" data-lang="JP"><img src="http://www.geonames.org/flags/x/jp.gif"/></a>
+            </div>
+          */
+        displayBar : function (e, style) {
+            var self = this;
+            style = style || { height: '30px', 'padding': '3px' };
+            var $e = $(e);
+            if ($e.length==0) throw "No element "+e+" found!";
+            $.each(this.languages, function (i,lang) {
+                $e.append(
+                  $('<a href="#" class="translate-button" data-lang="'+lang+'"></a>').append(
+                      $('<img src="http://www.geonames.org/flags/x/'+lang.toLowerCase()+'.gif"/>').css(style)
+                  )
+                );
+            });
+
+            $(".translate-button").click(function () {
+                self.setLocaleTranslate($(this).data('lang'));
+                return false;
+            });
+        },
         translate : function ($e) {
             var self = this;
             var found = false;
