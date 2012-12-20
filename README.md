@@ -26,6 +26,9 @@ Simplistic. Simplista.
     
     <!-- will grab the profile-lefttxt1 token from spreadsheet -->
     <span class="translate-token" data-translate-token="profile-lefttxt1"></span>
+    
+    <!-- allow markdown -->
+    <span class="translate-token" data-translate-token="profile-lefttxt1" data-markdown=1 data-noanimate=1></span>
 
     <script>
         // will be whatever the column name

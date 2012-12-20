@@ -10,12 +10,12 @@ describe("i18n-googlespreadsheet", function() {
 
       $el = $('#jasmine-fixtures');
       $h1 = $('#testh1');
-      i18n = new $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["EN", "JP"], function () {
+      i18n = new $.i18n("https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html", ["CA", "JP"], function () {
           i18n.animate = 0;  // supress animation, or else need async tests
           i18n.translate($h1);
           done();
       });
-      i18n.setLocale('EN');  // set to jp (default as first)
+      i18n.setLocale('CA');  // set to jp (default as first)
       //var tranalste = i.translateToken('profile-lefttxt1');
     });
 
