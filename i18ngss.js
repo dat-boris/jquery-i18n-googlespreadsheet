@@ -66,7 +66,7 @@ $((function ($) {
                     if (i<numLangs+1) {
                         if (i>0) {
                             if (e!=languages[i-1]) {
-                                throw "Column "+(i)+" was not in language "+languages[i-1];
+                                throw "Check spreadsheet: Column "+(i)+" was not in language "+languages[i-1];
                             }
                         }
                         return;
@@ -133,7 +133,7 @@ $((function ($) {
                         if (!token)
                             throw("No data-translate-token property defined for element");
                         if (!self.translations[token]) {
-                            var msg = "No token "+token+"defined in spreadsheet!";
+                            var msg = "No token "+token+" defined - please add to spreadsheet";
                             if (self.alert) {
                                 alert(msg);
                             } else {
