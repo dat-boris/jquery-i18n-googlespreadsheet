@@ -144,21 +144,25 @@ $((function ($) {
 
                         if ($this.data('markdown')) {
                             txtTranslated = markdown.toHTML(txtTranslated);
-                            if (isAnimate) {
-                                $this.fadeOut(function() {
-                                    $(this).html(txtTranslated).fadeIn();
-                                });
-                            } else {
-                                $this.html(txtTranslated);
+                            if ($this.html() !== txtTranslated) {
+                                if (isAnimate) {
+                                    $this.fadeOut(function() {
+                                        $(this).html(txtTranslated).fadeIn();
+                                    });
+                                } else {
+                                    $this.html(txtTranslated);
+                                }
                             }
                             
                         } else {
-                            if (isAnimate) {
-                                $this.fadeOut(function() {
-                                    $(this).text(txtTranslated).fadeIn();
-                                });
-                            } else {
-                                $this.text(txtTranslated);
+                            if ($this.text() !== txtTranslated) {
+                                if (isAnimate) {
+                                    $this.fadeOut(function() {
+                                        $(this).text(txtTranslated).fadeIn();
+                                    });
+                                } else {
+                                    $this.text(txtTranslated);
+                                }
                             }
                         }
                         found = true;
