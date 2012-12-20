@@ -117,13 +117,26 @@ $((function ($) {
                             }
                             return;
                         }
+
                         var txtTranslated = self.translations[token][self.lang];
-                        if (self.animate) {
-                            $this.fadeOut(function() {
-                                $(this).text(txtTranslated).fadeIn();
-                            });
+                        if ($this.data('markdown')) {
+                            txtTranslated = markdown.toHTML(txtTranslated);
+                            if (self.animate) {
+                                $this.fadeOut(function() {
+                                    $(this).html(txtTranslated).fadeIn();
+                                });
+                            } else {
+                                $this.html(txtTranslated);
+                            }
+                            
                         } else {
-                            $this.text(txtTranslated);
+                            if (self.animate) {
+                                $this.fadeOut(function() {
+                                    $(this).text(txtTranslated).fadeIn();
+                                });
+                            } else {
+                                $this.text(txtTranslated);
+                            }
                         }
                         found = true;
                     }

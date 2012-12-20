@@ -44,6 +44,9 @@ And make sure it is published (see https://github.com/mikeymckay/google-spreadsh
 
 ## Dependency ##
 
-Pulled as submodule
+Imported script from following repo
 
 - https://github.com/mikeymckay/google-spreadsheet-javascript/
+- https://github.com/evilstreak/markdown-js
+
+(hopfully one day github-pages support submodules)
