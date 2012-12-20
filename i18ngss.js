@@ -138,9 +138,13 @@ $((function ($) {
                         }
 
                         var txtTranslated = self.translations[token][self.lang];
+                        
+                        // animate on large block of text is no good (scroll issue)
+                        var isAnimate = self.animate && !$this.data('noanimate');
+
                         if ($this.data('markdown')) {
                             txtTranslated = markdown.toHTML(txtTranslated);
-                            if (self.animate) {
+                            if (isAnimate) {
                                 $this.fadeOut(function() {
                                     $(this).html(txtTranslated).fadeIn();
                                 });
@@ -149,7 +153,7 @@ $((function ($) {
                             }
                             
                         } else {
-                            if (self.animate) {
+                            if (isAnimate) {
                                 $this.fadeOut(function() {
                                     $(this).text(txtTranslated).fadeIn();
                                 });
