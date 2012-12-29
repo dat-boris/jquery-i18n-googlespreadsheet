@@ -125,8 +125,10 @@ $((function ($) {
                     function (i) {
                         var $this = $(this);
                         var token = $this.data('translate-token');
-                        if (!token)
-                            throw("No data-translate-token property defined for element");
+                        if (!token) {
+                            //allow ("No data-translate-token property defined for element");
+                            return;
+                        }
                         if (!self.translations[token]) {
                             var msg = "No token "+token+" defined - please add to spreadsheet";
                             if (self.alert) {
@@ -155,13 +157,15 @@ $((function ($) {
                             }
                             
                         } else {
+                            // allow new line
+                            txtTranslated = txtTranslated.split("\n").join("<br/>");
                             if ($this.text() !== txtTranslated) {
                                 if (isAnimate) {
                                     $this.fadeOut(function() {
-                                        $(this).text(txtTranslated).fadeIn();
+                                        $(this).html(txtTranslated).fadeIn();
                                     });
                                 } else {
-                                    $this.text(txtTranslated);
+                                    $this.html(txtTranslated);
                                 }
                             }
                         }
