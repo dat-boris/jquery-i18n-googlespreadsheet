@@ -145,6 +145,10 @@ $((function ($) {
                         var isAnimate = self.animate && !$this.data('noanimate');
 
                         if ($this.data('markdown')) {
+                            // see jasmine test - the space is required to make linebreak works on 
+                            // some japanese character, but will not affect english
+                            txtTranslated = txtTranslated.split("\n").join("  \n");
+                            
                             txtTranslated = markdown.toHTML(txtTranslated);
                             if ($this.html() !== txtTranslated) {
                                 if (isAnimate) {

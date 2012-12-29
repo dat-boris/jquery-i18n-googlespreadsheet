@@ -51,7 +51,9 @@ describe("i18n-googlespreadsheet", function() {
     describe('Markdown Japanese translation', function () {
       it('markdown list should be working', function() {
         i18n.setLocaleTranslate('JP');
-        expect( $("#markdown-test").html() ).toMatch(/<li>世界を旅/);
+        var exp = expect( $("#markdown-test").html() );
+        exp.toMatch(/<li>世界を旅/);
+        exp.toMatch(/Web site<br> www.lettersinthesky@org/);
       });
     });
 
