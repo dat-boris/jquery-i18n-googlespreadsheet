@@ -38,6 +38,7 @@
             var GSSURL = "https://docs.google.com/spreadsheet/pub?key=0Al0uCQDAjJijdENaMlQ0RlJBR3dQVUdrQ3BGVk9qYnc&output=html";
             var LANGS = ["CA", "JP"];
             var langnow = 0;
+            var TIMER;
             $(function () {
                 // will be whatever the column name
                 i18n = new $.i18n(GSSURL, LANGS,"translate");
@@ -45,10 +46,14 @@
                 i18n.displayBar("#langbar", { height: '20px', padding: '2px' });
 
                 // the 3 seconds swap
-                setInterval(function () {
+                TIMER = setInterval(function () {
                     langnow = (langnow + 1) % LANGS.length;
                     i18n.setLocaleTranslate(LANGS[langnow]);  // set to jp (default as first)
                 }, 3000);
+
+                $("#langbar").click(function () {
+                    clearTimeout(TIMER);
+                });
             });
         </script>
     </body>
